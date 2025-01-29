@@ -11,9 +11,9 @@ import Navbar from"./components/Navbar";
  import Myprofile from './Pages/My profile';
  import Myappointements from './Pages/My appointements';
  import Header from './components/Header';
-
+import Appointment from './Pages/Appointement';
 import Footer from './components/Footer';
-
+;
 const App= () => {
 
   return (
@@ -31,16 +31,18 @@ const App= () => {
             <Route path="/About" element={<About/>}/>
             <Route path="/Contact Us" element={<Contact Us/>}/>
           <Route path="/Register" element={<Register/>}/>
-         <Route path="/Doctors/:speciality" element={<Doctors/>}/>
+         <Route path="/Doctors/:Speciality" element={<Doctors/>}/>
           <Route path ="/Doctors" element={<Doctors/>} />
           <Route path='/Login' element={<Login/>}/>
           <Route ppath ="/Myprofile" element={<Myprofile/>}/>
-          <Route path="/Myappointement"  element={<Myappointements/>} />
-          <Route path="/Myappointement/:docId"  element={<Myappointements/>} />
-          <Route path="/Header" elemen={<Header/>}/>
+          <Route path="/Myappointements/:docid" element={<Myappointements/>} />
+          <Route path="/Header" element={<Header/>}/>
+          <Route path="/Appointment/:docid" element={<Appointment />} />
+  
            </Routes>
 
            <Footer/>
+
     </div>
 
 

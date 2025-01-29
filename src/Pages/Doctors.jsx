@@ -1,88 +1,70 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { AppContext } from '../Context/AppContext';
+import React, { useContext, useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { AppContext } from "../Context/AppContext";
 
 const Doctors = () => {
-  const { Speciality } = useParams(); // Fetches the Speciality from the URL params
-  const [filterDoc, setFilterDoc] = useState([]);
-  const { Doctors } = useContext(AppContext); // Assuming this context provides the doctors list
+  const { Speciality } = useParams(); // Get speciality from URL params
+  const { Doctors } = useContext(AppContext); // Get doctors from context
+  const [filterDoc, setFilterDoc] = useState([]); // State to store filtered doctors
   const navigate = useNavigate();
 
-  // Filters the doctors based on the selected specialty
-  const applyFilter = () => {
-    if (Doctors && Speciality) {
-      setFilterDoc(Doctors.filter(doc => doc.Speciality === Speciality));
-    } else if (Doctors) {
-      setFilterDoc(Doctors);
-    }
-  };
-
-  // Applies filter when Doctors data or Speciality changes
   useEffect(() => {
-    applyFilter();
+    console.log("Doctors data:", Doctors); // Debugging: Ensure we have doctor data
+    console.log("Speciality param:", Speciality); // Debugging: Check the speciality from params
+
+    if (Doctors && Doctors.length > 0) {
+      if (Speciality) {
+        const filtered = Doctors.filter(
+          (doctor) =>
+            doctor.speciality?.toLowerCase() === Speciality?.toLowerCase()
+        );
+        console.log("Filtered doctors:", filtered); // Debugging: Check filtered list
+        setFilterDoc(filtered);
+      } else {
+        setFilterDoc(Doctors); // No speciality, show all doctors
+      }
+    } else {
+      console.warn("Doctors data is empty or not loaded.");
+      // Fallback: Use mock data or an empty array
+      setFilterDoc([]);
+    }
   }, [Doctors, Speciality]);
 
   return (
-    <div>
-      <p className="text-gray-600">Browse through the doctors by specialty</p>
-
-      {/* Specialty Filter */}
-      <div className="flex flex-col sm:flex-row items-start gap-5 mt-5">
-        <div className="flex flex-col gap-4 text-sm text-gray-600">
-  
-          </div>
-  
+    <div className="p-6">
+      <h1 className="text-2xl font-semibold text-gray-800">
+        Browse through the doctors
+      </h1>
+      <p className="text-gray-600 mt-2">Find specialists and book appointments.</p>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-5">
+        {filterDoc.length > 0 ? (
+          filterDoc.map((doctor) => (
+            <div
+              key={doctor.docid}
+              onClick={() => navigate(`/Appointment/${doctor.docid}`)}
+              className="flex flex-col items-center text-center border p-4 rounded shadow-md transition-all hover:shadow-lg cursor-pointer"
+            >
+              <div className="mb-4">
+                <img
+                  src={doctor.image || "https://via.placeholder.com/150"}
+                  alt={doctor.name || "Doctor"}
+                  className="w-24 h-24 rounded-full object-cover"
+                />
+              </div>
+              <p className="font-semibold text-lg">{doctor.name || "N/A"}</p>
+              <p className="text-gray-500">{doctor.Speciality || "General Practitioner"}</p>
+              <button className="mt-3 px-4 py-2 bg-primary text-white rounded">
+                View Profile
+              </button>
+            </div>
+          ))
+        ) : (
+          <p className="text-gray-500 col-span-full text-center">
+            No doctors found. Please try again later.
+          </p>
+        )}
       </div>
-
-        {/* Doctors Table */}
-        <div className="w-full  grid grid-cols-auto gap-4 gap-y-6">
-          <table className="min-w-full bg-white border border-gray-200">
-            <thead>
-              <tr className="border-b">
-                <th className="py-3 px-4 text-left text-gray-600 font-medium">Doctor</th>
-                <th className="py-3 px-4 text-left text-gray-600 font-medium">Specialty</th>
-                <th className="py-3 px-4 text-left text-gray-600 font-medium">Availability</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filterDoc.map((item, index) => (
-                <tr
-                  key={index}
-                  onClick={() => navigate(`/appointment/${item._id}`)}
-                  className="border-b cursor-pointer hover:bg-gray-100"
-                >
-                  {/* Doctor's Image and Name */}
-                  <td className="py-3 px-4">
-                    <div className="flex items-center gap-2">
-                      <img
-                        className="w-10 h-10 object-cover rounded-full"
-                        src={item.image}
-                        alt={item.name}
-                      />
-                      <p className="text-gray-900 font-medium">{item.name}</p>
-                    </div>
-                  </td>
-                  
-                  {/* Specialty */}
-                  <td className="py-3 px-4 text-gray-600">{item.speciality}</td>
-                  
-                  {/* Availability */}
-                  <td className="py-3 px-4">
-                    <span
-                      className={`px-2 py-1 rounded-full text-sm ${
-                        item.available ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'
-                      }`}
-                    >
-                      {item.available ? 'Available' : 'Not Available'}
-                    </span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-</div>
-</div>
-
+    </div>
   );
 };
 

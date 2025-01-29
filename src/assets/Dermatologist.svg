@@ -1,0 +1,32 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  viewBox="0 0 64 64"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <!-- Face Outline -->
+  <circle cx="32" cy="20" r="12" fill="#FDD7B1" stroke="#222" />
+  <!-- Eyes -->
+  <circle cx="28" cy="18" r="1.5" fill="#222" />
+  <circle cx="36" cy="18" r="1.5" fill="#222" />
+  <!-- Smile -->
+  <path d="M28 24c1 2 3 2 4 2s3 0 4-2" stroke="#222" />
+  <!-- Hair -->
+  <path
+    d="M24 13c2-3 8-4 8-4s6 1 8 4"
+    fill="none"
+    stroke="#222"
+  />
+  <!-- Body -->
+  <rect x="22" y="32" width="20" height="24" rx="4" fill="#90C3D4" />
+  <!-- Stethoscope -->
+  <path
+    d="M24 32v4c0 2 2 4 4 4s4-2 4-4v-4m8 0v4c0 2-2 4-4 4s-4-2-4-4v-4"
+    stroke="#222"
+  />
+  <circle cx="32" cy="40" r="2" fill="#222" />
+</svg>

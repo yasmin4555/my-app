@@ -1,7 +1,7 @@
 // Importing all assets
 import Image from "./OIP (8).jpg";
-import OIP from"./OIP (7).jpg";
-import portait from "./portrait-shot-smiling-male-doctor-standing-hospital-background-generative-ai_292610-488.jpg";
+import OIP from"./OIP 7.jpg";
+import OIP26 from "./OIP (26).jpg";
 import Myprofile from "./Myprofile.png";
 import logo from "./logo.jpg";
 import arrow_icon from './arrow_icon.svg';
@@ -13,14 +13,18 @@ import groupimage from "./group image.jpg";
 import Dermatologist from"./download (4).jpg";
 import Internal_Medicine from"./OIP (15).jpg";
 import Medical_Plastic_Surgery from"./OIP (13).jpg";
-import appointment from"./appointment.jpg";
+import appointment from"./appointment.webp";
 import Healthlogo from"./HealthWellness-midsize.jpg";
 import verfied_icon from "./verfied_icon.svg";
 import info_icon from"./info_icon.svg";
-
+import doctors from"./doctors.png";
+import Aboutus from"./aboutt.jpg";
+import Contactus from"./Contact us.jpg";
+import dr from"./dr.webp";
 export const assets = {
     Image,
-    portait,
+    Contactus,
+    OIP26,
    Myprofile,
     Healthlogo,
     logo,
@@ -35,8 +39,12 @@ export const assets = {
     Medical_Plastic_Surgery,
     OIP,
     appointment,
+    Aboutus,
     verfied_icon,
     info_icon,
+    doctors,
+    
+    dr,
 
 };
 export const SpecialityData =[
@@ -78,7 +86,7 @@ export const SpecialityData =[
 // Doctors data with references to assets
 export const Doctors = [
     {
-        _id: "doc1",
+        docid: "1",
         name: "Dr Lordiana Rimmaudo",
         image: assets.OIP, // Reference the imported `Image`
         speciality: "Dermatologist",
@@ -89,20 +97,20 @@ export const Doctors = [
         address: "16 Charly Street, 52234 Aachen, Germany",
     },
     {
-        _id: "doc2",
+        docid: "2",
         name: "Dr William Edres",
         image: assets.Image, // Reference the imported `portait` image
         speciality: "Internal Medicine",
         degree: "MBBS",
-        experience: "4 years",
+        experience: "4years",
         about: "Dr William is very helpful and very professional at his work",
         fees: 50,
         address: "16 Charly Street, 52234 Aachen, Germany",
     },
     {
-        _id: "doc3",
+        docid: "3",
         name: "Dr Ronald Swarwoski",
-        image: assets.portait, // Reference the imported `portait` image
+        image: assets.OIP26, // Reference the imported `portait` image
         speciality: "Plastic Surgeon",
         degree: "MBBS",
         experience: "8 years",
@@ -110,4 +118,16 @@ export const Doctors = [
         fees: 70,
         address: "16 Charly Street, 52234 Aachen, Germany",
     },
+    {
+    docid: "4",
+    name: "Dr Diana Mohamed",
+    image: assets.dr, // Reference the imported `Image`
+    speciality: "Dermatologist",
+    degree: "MBBS",
+    experience: "5years",
+    about: "",
+    fees: 70,
+    address: "16 Charly Street, 52234 Aachen, Germany",
+    },
+
 ];
